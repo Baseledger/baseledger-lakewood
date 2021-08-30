@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  blockchain_app:
+      image: baseledger/blockchain_app
+      networks:
+        - baseledger
+      ports:
+        - ${BLOCKCHAIN_APP_API_PORT}:1317
+        - ${TENDERMINT_NODE_PORT}:26656
+        - ${TENDERMINT_NODE_GRPC_PORT}:26657
+      extra_hosts:
+          - "host.docker.internal:host-gateway" # enable targeting host machine with host.docker.internal
