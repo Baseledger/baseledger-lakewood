@@ -3,7 +3,7 @@ _In the spirit of developing a proof of concept implementation to experiment wit
 
 ## Explore
 
-To explore the current state of baseledger-lakewood, open the [Lakewood Baseledger Explorer](https://lakweood.baseledger.net).
+To explore the current state of baseledger-lakewood, open the [Lakewood Baseledger Explorer](https://lakewood.baseledger.net).
 
 ## Join lakewood as replicator node
 
