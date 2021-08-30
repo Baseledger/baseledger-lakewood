@@ -19,10 +19,11 @@ To join lakewood as a replicator node, perform the following steps to setup and 
 ## Install your own block explorer for lakewood
 
 1. Install prerequisites - NodeJS LTS and meteor
-2. Clone the repo
-2. Create/modify settings.json
-3. Run *npm install --save* 
-4. Run *meteor --settings settings.json*
+2. Clone the repo to yur server
+3. Navigate to explorer folder
+4. Create/modify settings.json
+5. Run *npm install --save* 
+6. Run *meteor --settings settings.json*
 
 ## Join lakewood as a validator node
 
