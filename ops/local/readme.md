@@ -12,3 +12,9 @@ DOCKER_BUILDKIT=1
 
 1. Navigate to repo root/ops folder
 2. Run ./clear_blockchain.sh (WSL )or sudo sh clear_blockchain.sh (Non root user on Linux)
+
+# Postman collection
+1. Import proxy_app/misc/baseledger demo proxy.postman_collection
+2. make sure endpoints have correct user and pass for basic auth previously set
+3. make sure workgroup, organization id and organization nats endpoints have correct values set
+4. fire away

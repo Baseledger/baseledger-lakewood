@@ -10,9 +10,9 @@ To explore the current state of baseledger-lakewood, open the [Lakewood Baseledg
 To join lakewood as a replicator node, perform the following steps to setup and run the corresponding application as docker containers.
 
 1. Copy ops folder to the server
-3. Run *setup-node-infrastructure-for-testnet.sh*
+3. Run *testnet/setup-node-infrastructure-for-testnet.sh*
 4. Open only ports in the firewall that are necessary for external communication, 26656. Be aware of docker\ufw incompatibility https://github.com/docker/for-linux/issues/777
-5. Open *add-node-to-running-blokchain.sh* and add your prefered node name instead of <node_id>
+5. Open *testnet/add-node-to-running-blokchain.sh* and add your prefered node name instead of <node_id>
 6. Run *add-node-to-running-blokchain.sh*
 7. docker exec baseledger-node_blockchain_app_1 baseledgerd start
 
