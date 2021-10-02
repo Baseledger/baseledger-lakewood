@@ -32,3 +32,8 @@ As the Lakewood testnet may be frequently reset, it is currently not possible to
 ## baseledger-core and Peachtree Testnet
 
 The ["peachtree" testnet](https://explorer.peachtree.baseledger.net) was created from scratch using tendermint for BFT consensus and the [Provide stack](https://docs.provide.services) for subscribing to events emitted by the Baseledger governance and staking contracts, broadcasting _baseline proofs_ to the network and otherwise interacting with the [Baseline Protocol](https://github.com/eea-oasis/baseline). As a result of this design, [`baseledger-core`](https://github.com/Baseledger/baseledger-core) can be built as a single container and added to existing deployments of the Provide stack for increased security. `baseledger-core` can also run standalone (i.e., outside the context of a Provide stack). Baseledger nodes running outside the context of a Provide stack are not restricted from operating as validator, full or seed nodes. Organizations implementing the _baseline_ pattern in commercial multiparty workflows benefit from running a local Baseledger node because it provides additional security to the cryptographic commitments (proofs) stored within the Provide stack without sacrificing any privacy guarantees inherent to _baselining_.
+
+## Run lakewood simulation locally
+
+Follow *root/ops/local/readme.md*. E2E test collection with basic functionalities can be found in *root/ops/e2e-tests*. Proxy endpoints are described in Postman collection at *root/proxy_app/misc/baseledger demo proxy.postman_collection.json*. 
+
