@@ -1,0 +1,15 @@
+syntax = "proto3";
+package unibrightio.baseledger.baseledger;
+
+// this line is used by starport scaffolding # genesis/proto/import
+import "baseledger/BaseledgerTransaction.proto";
+
+option go_package = "github.com/unibrightio/baseledger/x/baseledger/types";
+
+// GenesisState defines the baseledger module's genesis state.
+message GenesisState {
+    // this line is used by starport scaffolding # genesis/proto/state
+		repeated BaseledgerTransaction BaseledgerTransactionList = 1; // this line is used by starport scaffolding # genesis/proto/stateField
+		uint64 BaseledgerTransactionCount = 2; // this line is used by starport scaffolding # genesis/proto/stateField
+    // this line is used by starport scaffolding # ibc/genesis/proto
+}

@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "d3005bf8-b355-410c-bb6d-f08d47150a73",
+		"name": "baseledger demo proxy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "node 1 s4h suggestion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"workgroup_id\": \"734276bc-4adc-4621-acf8-ac66dc91cb27\",\r\n    \"recipient\": \"0bd0319b-faea-468f-b571-7c6de389f050\",\r\n    \"workstep_type\": \"Initial\",\r\n    \"business_object_type\": \"purchase_order\",\r\n    \"baseledger_business_object_id\": \"169f104f-980e-42bb-a128-73daf259bc39\",\r\n    \"business_object_json\": \"{\\\"control\\\": {\\n            \\\"tabnam\\\": \\\"EDI_DC40\\\",\\n            \\\"mandt\\\": \\\"100\\\",\\n            \\\"docnum\\\": \\\"0000000000107093\\\",\\n            \\\"docrel\\\": \\\"755\\\",\\n            \\\"status\\\": \\\"03\\\",\\n            \\\"direct\\\": \\\"1\\\",\\n            \\\"outmod\\\": \\\"2\\\",\\n            \\\"idoctyp\\\": \\\"ORDERS05\\\",\\n            \\\"mestyp\\\": \\\"ORDERS\\\",\\n            \\\"sndpor\\\": \\\"/UBC/IDOC\\\",\\n            \\\"sndprt\\\": \\\"LS\\\",\\n            \\\"sndprn\\\": \\\"/UBC/PROXY\\\",\\n            \\\"rcvpor\\\": \\\"/UBC/IDOC\\\",\\n            \\\"rcvprt\\\": \\\"LI\\\",\\n            \\\"rcvpfc\\\": \\\"LF\\\",\\n            \\\"rcvprn\\\": \\\"0010300081\\\",\\n            \\\"credat\\\": \\\"2021-09-22\\\",\\n            \\\"cretim\\\": \\\"04:49:24\\\",\\n            \\\"serial\\\": \\\"20210922044923\\\"\\n        },\\n        \\\"data\\\": {\\n            \\\"e1edk01\\\": {\\n                \\\"curcy\\\": \\\"EUR\\\",\\n                \\\"hwaer\\\": \\\"EUR\\\",\\n                \\\"wkurs\\\": \\\"1.00000\\\",\\n                \\\"zterm\\\": \\\"0004\\\",\\n                \\\"bsart\\\": \\\"NB\\\",\\n                \\\"belnr\\\": \\\"4500002736\\\",\\n                \\\"recipnt_no\\\": \\\"0010300081\\\"\\n            },\\n            \\\"e1edk14\\\": [\\n                {\\n                    \\\"qualf\\\": \\\"014\\\",\\n                    \\\"orgid\\\": \\\"1010\\\"\\n                },\\n                {\\n                    \\\"qualf\\\": \\\"009\\\",\\n                    \\\"orgid\\\": \\\"Z90\\\"\\n                },\\n                {\\n                    \\\"qualf\\\": \\\"013\\\",\\n                    \\\"orgid\\\": \\\"NB\\\"\\n                },\\n                {\\n                    \\\"qualf\\\": \\\"011\\\",\\n                    \\\"orgid\\\": \\\"1010\\\"\\n                }\\n            ],\\n            \\\"e1edk03\\\": [\\n                {\\n                    \\\"iddat\\\": \\\"012\\\",\\n                    \\\"datum\\\": \\\"20210825\\\"\\n                },\\n                {\\n                    \\\"iddat\\\": \\\"011\\\",\\n                    \\\"datum\\\": \\\"20210922\\\"\\n                }\\n            ],\\n            \\\"e1edka1\\\": [\\n                {\\n                    \\\"parvw\\\": \\\"AG\\\",\\n                    \\\"partn\\\": \\\"10100001\\\",\\n                    \\\"telf1\\\": \\\"770 840 9423\\\",\\n                    \\\"telfx\\\": \\\"770 840 9001\\\",\\n                    \\\"bname\\\": \\\"Purch. Grp for RM\\\",\\n                    \\\"paorg\\\": \\\"1010\\\",\\n                    \\\"orgtx\\\": \\\"Einkaufsorg. 1010\\\",\\n                    \\\"pagru\\\": \\\"Z90\\\"\\n                },\\n                {\\n                    \\\"parvw\\\": \\\"LF\\\",\\n                    \\\"partn\\\": \\\"0010300081\\\",\\n                    \\\"spras\\\": \\\"D\\\",\\n                    \\\"spras_iso\\\": \\\"DE\\\"\\n                },\\n                {\\n                    \\\"parvw\\\": \\\"WE\\\",\\n                    \\\"lifnr\\\": \\\"1010\\\",\\n                    \\\"name1\\\": \\\"concircle Werk 1\\\",\\n                    \\\"stras\\\": \\\"WienerbergstraÃŸe 11\\\",\\n                    \\\"ort01\\\": \\\"Walldorf\\\",\\n                    \\\"pstlz\\\": \\\"69190\\\",\\n                    \\\"land1\\\": \\\"DE\\\",\\n                    \\\"spras\\\": \\\"D\\\",\\n                    \\\"spras_iso\\\": \\\"DE\\\"\\n                }\\n            ],\\n            \\\"e1edk02\\\": [\\n                {\\n                    \\\"qualf\\\": \\\"001\\\",\\n                    \\\"belnr\\\": \\\"4500002736\\\",\\n                    \\\"datum\\\": \\\"20210825\\\",\\n                    \\\"uzeit\\\": \\\"044923\\\"\\n                }\\n            ],\\n            \\\"e1edp01\\\": [\\n                {\\n                    \\\"posex\\\": \\\"00010\\\",\\n                    \\\"action\\\": \\\"001\\\",\\n                    \\\"pstyp\\\": \\\"0\\\",\\n                    \\\"menge\\\": \\\"1005.000\\\",\\n                    \\\"menee\\\": \\\"PCE\\\",\\n                    \\\"bmng2\\\": \\\"1005.000\\\",\\n                    \\\"pmene\\\": \\\"PCE\\\",\\n                    \\\"vprei\\\": \\\"0.1\\\",\\n                    \\\"peinh\\\": \\\"1\\\",\\n                    \\\"netwr\\\": \\\"100.5\\\",\\n                    \\\"matkl\\\": \\\"01\\\",\\n                    \\\"bpumn\\\": \\\"1\\\",\\n                    \\\"bpumz\\\": \\\"1\\\",\\n                    \\\"werks\\\": \\\"1010\\\",\\n                    \\\"lgort\\\": \\\"101B\\\",\\n                    \\\"e1edp20\\\": [\\n                        {\\n                            \\\"wmeng\\\": \\\"1005.000\\\",\\n                            \\\"ameng\\\": \\\"0.000\\\",\\n                            \\\"edatu\\\": \\\"20210317\\\"\\n                        }\\n                    ],\\n                    \\\"e1edp19\\\": [\\n                        {\\n                            \\\"qualf\\\": \\\"002\\\",\\n                            \\\"idtnr\\\": \\\"CON_BOTTLE10300081\\\",\\n                            \\\"idtnr_long\\\": \\\"CON_BOTTLE10300081\\\"\\n                        },\\n                        {\\n                            \\\"qualf\\\": \\\"001\\\",\\n                            \\\"idtnr\\\": \\\"CON_BOTTLE\\\",\\n                            \\\"ktext\\\": \\\"Glassbottle 0,33 l\\\",\\n                            \\\"idtnr_long\\\": \\\"CON_BOTTLE\\\"\\n                        }\\n                    ],\\n                    \\\"e1edpt1\\\": [\\n                        {\\n                            \\\"tdid\\\": \\\"BEST\\\",\\n                            \\\"tsspras\\\": \\\"D\\\",\\n                            \\\"tsspras_iso\\\": \\\"DE\\\",\\n                            \\\"e1edpt2\\\": [\\n                                {\\n                                    \\\"tdline\\\": \\\"Glassbottle 0,33 l\\\",\\n                                    \\\"tdformat\\\": \\\"*\\\"\\n                                },\\n                                {\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                }\\n                            ]\\n                        }\\n                    ]\\n                },\\n                {\\n                    \\\"posex\\\": \\\"00020\\\",\\n                    \\\"action\\\": \\\"001\\\",\\n                    \\\"pstyp\\\": \\\"0\\\",\\n                    \\\"menge\\\": \\\"10001.000\\\",\\n                    \\\"menee\\\": \\\"PCE\\\",\\n                    \\\"bmng2\\\": \\\"10001.000\\\",\\n                    \\\"pmene\\\": \\\"PCE\\\",\\n                    \\\"vprei\\\": \\\"0.01\\\",\\n                    \\\"peinh\\\": \\\"1\\\",\\n                    \\\"netwr\\\": \\\"100.01\\\",\\n                    \\\"matkl\\\": \\\"01\\\",\\n                    \\\"bpumn\\\": \\\"1\\\",\\n                    \\\"bpumz\\\": \\\"1\\\",\\n                    \\\"werks\\\": \\\"1010\\\",\\n                    \\\"lgort\\\": \\\"101B\\\",\\n                    \\\"e1edp20\\\": [\\n                        {\\n                            \\\"wmeng\\\": \\\"10001.000\\\",\\n                            \\\"ameng\\\": \\\"0.000\\\",\\n                            \\\"edatu\\\": \\\"20210317\\\"\\n                        }\\n                    ],\\n                    \\\"e1edp19\\\": [\\n                        {\\n                            \\\"qualf\\\": \\\"002\\\",\\n                            \\\"idtnr\\\": \\\"CON_CAP10300081\\\",\\n                            \\\"idtnr_long\\\": \\\"CON_CAP10300081\\\"\\n                        },\\n                        {\\n                            \\\"qualf\\\": \\\"001\\\",\\n                            \\\"idtnr\\\": \\\"CON_CAP\\\",\\n                            \\\"ktext\\\": \\\"Cap\\\",\\n                            \\\"idtnr_long\\\": \\\"CON_CAP\\\"\\n                        }\\n                    ],\\n                    \\\"e1edpt1\\\": [\\n                        {\\n                            \\\"tdid\\\": \\\"BEST\\\",\\n                            \\\"tsspras\\\": \\\"D\\\",\\n                            \\\"tsspras_iso\\\": \\\"DE\\\",\\n                            \\\"e1edpt2\\\": [\\n                                {\\n                                    \\\"tdline\\\": \\\"Kronenkorken:\\\",\\n                                    \\\"tdformat\\\": \\\"*\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"                        in mm      Toleranz in mm\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"Innendurchmesser:  26,75  +0,15/âˆ’0,00\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"HÃ¶he:              6,00        Â±0,15\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"AuÃŸendurchmesser:  32,10  Â±0,20\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"Radius:              16,05  Â±0,25\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"Blechdicke:             0,20      Â±0,02\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                }\\n                            ]\\n                        }\\n                    ]\\n                }\\n            ],\\n            \\\"e1eds01\\\": [\\n                {\\n                    \\\"sumid\\\": \\\"002\\\",\\n                    \\\"summe\\\": \\\"200.51\\\",\\n                    \\\"sunit\\\": \\\"EUR\\\"\\n                }\\n            ]\\n        }\\n}\",\r\n    \"referenced_baseledger_business_object_id\": \"\",\r\n    \"referenced_baseledger_transaction_id\": \"\",\r\n    \"sor_business_object_id\":\"message_id_needed_for_status_update\"\r\n}"
+				},
+				"url": {
+					"raw": "http://<user>:<pass>@137.184.72.13:8081/suggestion",
+					"protocol": "http",
+					"auth": {
+						"user": "<user>",
+						"password": "<pass>"
+					},
+					"host": [
+						"137",
+						"184",
+						"72",
+						"13"
+					],
+					"port": "8081",
+					"path": [
+						"suggestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "node 2 s4p suggestion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"workgroup_id\": \"734276bc-4adc-4621-acf8-ac66dc91cb27\",\r\n    \"recipient\": \"d9c102eb-b173-45ac-b640-24d28a3c9f0c\",\r\n    \"workstep_type\": \"FinalWorkstep\",\r\n    \"business_object_type\": \"purchase_order\",\r\n    \"baseledger_business_object_id\": \"169f104f-980e-42bb-a128-73daf259bc39\",\r\n    \"business_object_json\": \"{\\\"control\\\": {\\n            \\\"tabnam\\\": \\\"EDI_DC40\\\",\\n            \\\"mandt\\\": \\\"100\\\",\\n            \\\"docnum\\\": \\\"0000000000107093\\\",\\n            \\\"docrel\\\": \\\"755\\\",\\n            \\\"status\\\": \\\"03\\\",\\n            \\\"direct\\\": \\\"1\\\",\\n            \\\"outmod\\\": \\\"2\\\",\\n            \\\"idoctyp\\\": \\\"ORDERS05\\\",\\n            \\\"mestyp\\\": \\\"ORDERS\\\",\\n            \\\"sndpor\\\": \\\"/UBC/IDOC\\\",\\n            \\\"sndprt\\\": \\\"LS\\\",\\n            \\\"sndprn\\\": \\\"/UBC/PROXY\\\",\\n            \\\"rcvpor\\\": \\\"/UBC/IDOC\\\",\\n            \\\"rcvprt\\\": \\\"LI\\\",\\n            \\\"rcvpfc\\\": \\\"LF\\\",\\n            \\\"rcvprn\\\": \\\"0010300081\\\",\\n            \\\"credat\\\": \\\"2021-09-22\\\",\\n            \\\"cretim\\\": \\\"04:49:24\\\",\\n            \\\"serial\\\": \\\"20210922044923\\\"\\n        },\\n        \\\"data\\\": {\\n            \\\"e1edk01\\\": {\\n                \\\"curcy\\\": \\\"EUR\\\",\\n                \\\"hwaer\\\": \\\"EUR\\\",\\n                \\\"wkurs\\\": \\\"1.00000\\\",\\n                \\\"zterm\\\": \\\"0004\\\",\\n                \\\"bsart\\\": \\\"NB\\\",\\n                \\\"belnr\\\": \\\"4500002736\\\",\\n                \\\"recipnt_no\\\": \\\"0010300081\\\"\\n            },\\n            \\\"e1edk14\\\": [\\n                {\\n                    \\\"qualf\\\": \\\"014\\\",\\n                    \\\"orgid\\\": \\\"1010\\\"\\n                },\\n                {\\n                    \\\"qualf\\\": \\\"009\\\",\\n                    \\\"orgid\\\": \\\"Z90\\\"\\n                },\\n                {\\n                    \\\"qualf\\\": \\\"013\\\",\\n                    \\\"orgid\\\": \\\"NB\\\"\\n                },\\n                {\\n                    \\\"qualf\\\": \\\"011\\\",\\n                    \\\"orgid\\\": \\\"1010\\\"\\n                }\\n            ],\\n            \\\"e1edk03\\\": [\\n                {\\n                    \\\"iddat\\\": \\\"012\\\",\\n                    \\\"datum\\\": \\\"20210825\\\"\\n                },\\n                {\\n                    \\\"iddat\\\": \\\"011\\\",\\n                    \\\"datum\\\": \\\"20210922\\\"\\n                }\\n            ],\\n            \\\"e1edka1\\\": [\\n                {\\n                    \\\"parvw\\\": \\\"AG\\\",\\n                    \\\"partn\\\": \\\"10100001\\\",\\n                    \\\"telf1\\\": \\\"770 840 9423\\\",\\n                    \\\"telfx\\\": \\\"770 840 9001\\\",\\n                    \\\"bname\\\": \\\"Purch. Grp for RM\\\",\\n                    \\\"paorg\\\": \\\"1010\\\",\\n                    \\\"orgtx\\\": \\\"Einkaufsorg. 1010\\\",\\n                    \\\"pagru\\\": \\\"Z90\\\"\\n                },\\n                {\\n                    \\\"parvw\\\": \\\"LF\\\",\\n                    \\\"partn\\\": \\\"0010300081\\\",\\n                    \\\"spras\\\": \\\"D\\\",\\n                    \\\"spras_iso\\\": \\\"DE\\\"\\n                },\\n                {\\n                    \\\"parvw\\\": \\\"WE\\\",\\n                    \\\"lifnr\\\": \\\"1010\\\",\\n                    \\\"name1\\\": \\\"concircle Werk 1\\\",\\n                    \\\"stras\\\": \\\"WienerbergstraÃŸe 11\\\",\\n                    \\\"ort01\\\": \\\"Walldorf\\\",\\n                    \\\"pstlz\\\": \\\"69190\\\",\\n                    \\\"land1\\\": \\\"DE\\\",\\n                    \\\"spras\\\": \\\"D\\\",\\n                    \\\"spras_iso\\\": \\\"DE\\\"\\n                }\\n            ],\\n            \\\"e1edk02\\\": [\\n                {\\n                    \\\"qualf\\\": \\\"001\\\",\\n                    \\\"belnr\\\": \\\"4500002736\\\",\\n                    \\\"datum\\\": \\\"20210825\\\",\\n                    \\\"uzeit\\\": \\\"044923\\\"\\n                }\\n            ],\\n            \\\"e1edp01\\\": [\\n                {\\n                    \\\"posex\\\": \\\"00010\\\",\\n                    \\\"action\\\": \\\"001\\\",\\n                    \\\"pstyp\\\": \\\"0\\\",\\n                    \\\"menge\\\": \\\"1005.000\\\",\\n                    \\\"menee\\\": \\\"PCE\\\",\\n                    \\\"bmng2\\\": \\\"1005.000\\\",\\n                    \\\"pmene\\\": \\\"PCE\\\",\\n                    \\\"vprei\\\": \\\"0.1\\\",\\n                    \\\"peinh\\\": \\\"1\\\",\\n                    \\\"netwr\\\": \\\"100.5\\\",\\n                    \\\"matkl\\\": \\\"01\\\",\\n                    \\\"bpumn\\\": \\\"1\\\",\\n                    \\\"bpumz\\\": \\\"1\\\",\\n                    \\\"werks\\\": \\\"1010\\\",\\n                    \\\"lgort\\\": \\\"101B\\\",\\n                    \\\"e1edp20\\\": [\\n                        {\\n                            \\\"wmeng\\\": \\\"1005.000\\\",\\n                            \\\"ameng\\\": \\\"0.000\\\",\\n                            \\\"edatu\\\": \\\"20210317\\\"\\n                        }\\n                    ],\\n                    \\\"e1edp19\\\": [\\n                        {\\n                            \\\"qualf\\\": \\\"002\\\",\\n                            \\\"idtnr\\\": \\\"CON_BOTTLE10300081\\\",\\n                            \\\"idtnr_long\\\": \\\"CON_BOTTLE10300081\\\"\\n                        },\\n                        {\\n                            \\\"qualf\\\": \\\"001\\\",\\n                            \\\"idtnr\\\": \\\"CON_BOTTLE\\\",\\n                            \\\"ktext\\\": \\\"Glassbottle 0,33 l\\\",\\n                            \\\"idtnr_long\\\": \\\"CON_BOTTLE\\\"\\n                        }\\n                    ],\\n                    \\\"e1edpt1\\\": [\\n                        {\\n                            \\\"tdid\\\": \\\"BEST\\\",\\n                            \\\"tsspras\\\": \\\"D\\\",\\n                            \\\"tsspras_iso\\\": \\\"DE\\\",\\n                            \\\"e1edpt2\\\": [\\n                                {\\n                                    \\\"tdline\\\": \\\"Glassbottle 0,33 l\\\",\\n                                    \\\"tdformat\\\": \\\"*\\\"\\n                                },\\n                                {\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                }\\n                            ]\\n                        }\\n                    ]\\n                },\\n                {\\n                    \\\"posex\\\": \\\"00020\\\",\\n                    \\\"action\\\": \\\"001\\\",\\n                    \\\"pstyp\\\": \\\"0\\\",\\n                    \\\"menge\\\": \\\"10001.000\\\",\\n                    \\\"menee\\\": \\\"PCE\\\",\\n                    \\\"bmng2\\\": \\\"10001.000\\\",\\n                    \\\"pmene\\\": \\\"PCE\\\",\\n                    \\\"vprei\\\": \\\"0.01\\\",\\n                    \\\"peinh\\\": \\\"1\\\",\\n                    \\\"netwr\\\": \\\"100.01\\\",\\n                    \\\"matkl\\\": \\\"01\\\",\\n                    \\\"bpumn\\\": \\\"1\\\",\\n                    \\\"bpumz\\\": \\\"1\\\",\\n                    \\\"werks\\\": \\\"1010\\\",\\n                    \\\"lgort\\\": \\\"101B\\\",\\n                    \\\"e1edp20\\\": [\\n                        {\\n                            \\\"wmeng\\\": \\\"10001.000\\\",\\n                            \\\"ameng\\\": \\\"0.000\\\",\\n                            \\\"edatu\\\": \\\"20210317\\\"\\n                        }\\n                    ],\\n                    \\\"e1edp19\\\": [\\n                        {\\n                            \\\"qualf\\\": \\\"002\\\",\\n                            \\\"idtnr\\\": \\\"CON_CAP10300081\\\",\\n                            \\\"idtnr_long\\\": \\\"CON_CAP10300081\\\"\\n                        },\\n                        {\\n                            \\\"qualf\\\": \\\"001\\\",\\n                            \\\"idtnr\\\": \\\"CON_CAP\\\",\\n                            \\\"ktext\\\": \\\"Cap\\\",\\n                            \\\"idtnr_long\\\": \\\"CON_CAP\\\"\\n                        }\\n                    ],\\n                    \\\"e1edpt1\\\": [\\n                        {\\n                            \\\"tdid\\\": \\\"BEST\\\",\\n                            \\\"tsspras\\\": \\\"D\\\",\\n                            \\\"tsspras_iso\\\": \\\"DE\\\",\\n                            \\\"e1edpt2\\\": [\\n                                {\\n                                    \\\"tdline\\\": \\\"Kronenkorken:\\\",\\n                                    \\\"tdformat\\\": \\\"*\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"                        in mm      Toleranz in mm\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"Innendurchmesser:  26,75  +0,15/âˆ’0,00\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"HÃ¶he:              6,00        Â±0,15\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"AuÃŸendurchmesser:  32,10  Â±0,20\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"Radius:              16,05  Â±0,25\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdline\\\": \\\"Blechdicke:             0,20      Â±0,02\\\",\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                },\\n                                {\\n                                    \\\"tdformat\\\": \\\"/\\\"\\n                                }\\n                            ]\\n                        }\\n                    ]\\n                }\\n            ],\\n            \\\"e1eds01\\\": [\\n                {\\n                    \\\"sumid\\\": \\\"002\\\",\\n                    \\\"summe\\\": \\\"200.51\\\",\\n                    \\\"sunit\\\": \\\"EUR\\\"\\n                }\\n            ]\\n        }\\n}\",\r\n    \"referenced_baseledger_business_object_id\": \"09d2f10a-dce8-4022-94d8-98c1010f8f60\",\r\n    \"referenced_baseledger_transaction_id\": \"\",\r\n    \"sor_business_object_id\":\"message_id_needed_for_status_update\"\r\n}"
+				},
+				"url": {
+					"raw": "http://<user>:<pass>@137.184.25.137:8081/suggestion",
+					"protocol": "http",
+					"auth": {
+						"user": "<user>",
+						"password": "<pass>"
+					},
+					"host": [
+						"137",
+						"184",
+						"25",
+						"137"
+					],
+					"port": "8081",
+					"path": [
+						"suggestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "node 1 s4h feedback",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"workgroup_id\": \"734276bc-4adc-4621-acf8-ac66dc91cb27\",\r\n    \"recipient\": \"0bd0319b-faea-468f-b571-7c6de389f050\",\r\n    \"approved\": true,\r\n    \"business_object_type\": \"purchase_order\",\r\n    \"baseledger_business_object_id_of_approved_object\": \"169f104f-980e-42bb-a128-73daf259bc39\",\r\n    \"original_baseledger_transaction_id\": \"ca78e980-9dd1-4996-b31c-25ba9556ee4c\",\r\n    \"original_offchain_process_message_id\": \"1ce7857e-b878-423d-bb65-2a5a83931a3b\",\r\n    \"feedback_message\": \"\"\r\n}"
+				},
+				"url": {
+					"raw": "http://<user>:<pass>@137.184.72.13:8081/feedback",
+					"protocol": "http",
+					"auth": {
+						"user": "<user>",
+						"password": "<pass>"
+					},
+					"host": [
+						"137",
+						"184",
+						"72",
+						"13"
+					],
+					"port": "8081",
+					"path": [
+						"feedback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "node 2 s4p feedback",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"workgroup_id\": \"734276bc-4adc-4621-acf8-ac66dc91cb27\",\r\n    \"recipient\": \"d9c102eb-b173-45ac-b640-24d28a3c9f0c\",\r\n    \"approved\": true,\r\n    \"business_object_type\": \"purchase_order\",\r\n    \"baseledger_business_object_id_of_approved_object\": \"169f104f-980e-42bb-a128-73daf259bc39\",\r\n    \"original_baseledger_transaction_id\": \"05a16c47-65c5-4d22-adc7-61bf492e8b04\",\r\n    \"original_offchain_process_message_id\": \"2699253c-f4b0-402e-b57e-a0a371a471e1\",\r\n    \"feedback_message\": \"\"\r\n}"
+				},
+				"url": {
+					"raw": "http://<user>:<pass>@137.184.25.137:8081/feedback",
+					"protocol": "http",
+					"auth": {
+						"user": "<user>",
+						"password": "<pass>"
+					},
+					"host": [
+						"137",
+						"184",
+						"25",
+						"137"
+					],
+					"port": "8081",
+					"path": [
+						"feedback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "node 1 s4h trustmeshes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://<user>:<pass>@137.184.72.13:8081/trustmeshes?rpp=100",
+					"protocol": "http",
+					"auth": {
+						"user": "<user>",
+						"password": "<pass>"
+					},
+					"host": [
+						"137",
+						"184",
+						"72",
+						"13"
+					],
+					"port": "8081",
+					"path": [
+						"trustmeshes"
+					],
+					"query": [
+						{
+							"key": "rpp",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "node 2 s4p trustmeshes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://<user>:<pass>@137.184.25.137:8081/trustmeshes?rpp=100",
+					"protocol": "http",
+					"auth": {
+						"user": "<user>",
+						"password": "<pass>"
+					},
+					"host": [
+						"137",
+						"184",
+						"25",
+						"137"
+					],
+					"port": "8081",
+					"path": [
+						"trustmeshes"
+					],
+					"query": [
+						{
+							"key": "rpp",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+package unibrightio.baseledger.baseledger;
+
+option go_package = "github.com/unibrightio/baseledger/x/baseledger/types";
+
+import "gogoproto/gogo.proto";
+
+message BaseledgerTransaction {
+  string creator = 1;
+  string id = 2;
+  string baseledgerTransactionId = 3; 
+  string payload = 4;
+  uint32 opCode = 5;
+}
