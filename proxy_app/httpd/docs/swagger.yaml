@@ -1,4 +1,48 @@
 definitions:
+  handler.createSuggestionRequest:
+    properties:
+      baseledger_business_object_id:
+        type: string
+      business_object_json:
+        type: string
+      business_object_type:
+        type: string
+      knowledge_limiters:
+        items:
+          type: string
+        type: array
+      recipient:
+        type: string
+      referenced_baseledger_business_object_id:
+        type: string
+      referenced_baseledger_transaction_id:
+        type: string
+      sor_message_id:
+        type: string
+      workgroup_id:
+        type: string
+      workstep_type:
+        type: string
+    type: object
+  handler.createSynchronizationFeedbackRequest:
+    properties:
+      approved:
+        type: boolean
+      baseledger_business_object_id_of_approved_object:
+        type: string
+      business_object_type:
+        type: string
+      feedback_message:
+        type: string
+      original_baseledger_transaction_id:
+        type: string
+      original_offchain_process_message_id:
+        type: string
+      recipient:
+        type: string
+      workgroup_id:
+        type: string
+    type: object
   handler.trustmeshDto:
     properties:
       businessObjectTypes:
@@ -75,6 +119,74 @@ info:
   title: Baseledger Proxy API documentation
   version: 1.0.0
 paths:
+  /feedback:
+    post:
+      consumes:
+      - application/json
+      description: Create new feedback
+      parameters:
+      - description: Feedback Request
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handler.createSynchronizationFeedbackRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Create new feedback based on parameters
+      tags:
+      - Feedbacks
+  /suggestion:
+    post:
+      consumes:
+      - application/json
+      description: Create new suggestion
+      parameters:
+      - description: Suggestion Request
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handler.createSuggestionRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Create new suggestion based on parameters
+      tags:
+      - Suggestions
   /trustmeshes:
     get:
       description: get all trustmeshes

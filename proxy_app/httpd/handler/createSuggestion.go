@@ -16,7 +16,7 @@ import (
 	"github.com/unibrightio/proxy-api/types"
 )
 
-type createInitialSuggestionRequest struct {
+type createSuggestionRequest struct {
 	WorkgroupId                          string   `json:"workgroup_id"`
 	Recipient                            string   `json:"recipient"`
 	WorkstepType                         string   `json:"workstep_type"`
@@ -29,7 +29,17 @@ type createInitialSuggestionRequest struct {
 	KnowledgeLimiters                    []string `json:"knowledge_limiters"`
 }
 
-func CreateInitialSuggestionRequestHandler() gin.HandlerFunc {
+// @Security BasicAuth
+// Create Suggestion ... Create Suggestion
+// @Summary Create new suggestion based on parameters
+// @Description Create new suggestion
+// @Tags Suggestions
+// @Accept json
+// @Param user body createSuggestionRequest true "Suggestion Request"
+// @Success 200 {string} txHash
+// @Failure 400,422,500 {string} errorMessage
+// @Router /suggestion [post]
+func CreateSuggestionRequestHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if !restutil.HasEnoughBalance() {
 			restutil.RenderError("not enough token balance", 400, c)
@@ -42,7 +52,7 @@ func CreateInitialSuggestionRequestHandler() gin.HandlerFunc {
 			return
 		}
 
-		req := &createInitialSuggestionRequest{}
+		req := &createSuggestionRequest{}
 		err = json.Unmarshal(buf, &req)
 		if err != nil {
 			restutil.RenderError(err.Error(), 422, c)
@@ -106,7 +116,7 @@ func getRandomSuggestionOpCode() int {
 	return rand.Intn(max-min+1) + min
 }
 
-func newSynchronizationRequest(req createInitialSuggestionRequest) *types.SynchronizationRequest {
+func newSynchronizationRequest(req createSuggestionRequest) *types.SynchronizationRequest {
 	return &types.SynchronizationRequest{
 		WorkgroupId:                          uuid.FromStringOrNil(req.WorkgroupId),
 		Recipient:                            req.Recipient,
@@ -119,7 +129,7 @@ func newSynchronizationRequest(req createInitialSuggestionRequest) *types.Synchr
 	}
 }
 
-func createSuggestionSentTrustmeshEntry(req createInitialSuggestionRequest, transactionId uuid.UUID, offchainMsg types.OffchainProcessMessage, txHash string) *types.TrustmeshEntry {
+func createSuggestionSentTrustmeshEntry(req createSuggestionRequest, transactionId uuid.UUID, offchainMsg types.OffchainProcessMessage, txHash string) *types.TrustmeshEntry {
 	return &types.TrustmeshEntry{
 		TendermintTransactionId:              transactionId,
 		OffchainProcessMessageId:             offchainMsg.Id,
@@ -140,7 +150,7 @@ func createSuggestionSentTrustmeshEntry(req createInitialSuggestionRequest, tran
 	}
 }
 
-func createSuggestOffchainMessage(req createInitialSuggestionRequest, transactionId uuid.UUID, syncTreeJson string, rootProof string) types.OffchainProcessMessage {
+func createSuggestOffchainMessage(req createSuggestionRequest, transactionId uuid.UUID, syncTreeJson string, rootProof string) types.OffchainProcessMessage {
 	offchainMessage := types.OffchainProcessMessage{
 		SenderId:                             uuid.FromStringOrNil(viper.Get("ORGANIZATION_ID").(string)),
 		ReceiverId:                           uuid.FromStringOrNil(req.Recipient),

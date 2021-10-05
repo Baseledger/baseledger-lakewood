@@ -39,7 +39,7 @@ func main() {
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	r.GET("/trustmeshes", basicAuth, handler.GetTrustmeshesHandler())
 	r.GET("/trustmeshes/:id", basicAuth, handler.GetTrustmeshHandler())
-	r.POST("/suggestion", basicAuth, handler.CreateInitialSuggestionRequestHandler())
+	r.POST("/suggestion", basicAuth, handler.CreateSuggestionRequestHandler())
 	r.POST("/feedback", basicAuth, handler.CreateSynchronizationFeedbackHandler())
 	r.GET("/sunburst/:txId", basicAuth, handler.GetSunburstHandler())
 	r.POST("send_offchain_message", basicAuth, handler.SendOffchainMessageHandler())

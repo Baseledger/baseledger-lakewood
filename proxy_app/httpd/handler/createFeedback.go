@@ -26,6 +26,16 @@ type createSynchronizationFeedbackRequest struct {
 	FeedbackMessage                            string `json:"feedback_message"`
 }
 
+// @Security BasicAuth
+// Create Feedback ... Create Feedback
+// @Summary Create new feedback based on parameters
+// @Description Create new feedback
+// @Tags Feedbacks
+// @Accept json
+// @Param user body createSynchronizationFeedbackRequest true "Feedback Request"
+// @Success 200 {string} txHash
+// @Failure 400,422,500 {string} errorMessage
+// @Router /feedback [post]
 func CreateSynchronizationFeedbackHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if !restutil.HasEnoughBalance() {

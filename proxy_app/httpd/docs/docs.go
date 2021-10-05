@@ -23,6 +23,114 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/feedback": {
+            "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "Create new feedback",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Feedbacks"
+                ],
+                "summary": "Create new feedback based on parameters",
+                "parameters": [
+                    {
+                        "description": "Feedback Request",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.createSynchronizationFeedbackRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/suggestion": {
+            "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "Create new suggestion",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Suggestions"
+                ],
+                "summary": "Create new suggestion based on parameters",
+                "parameters": [
+                    {
+                        "description": "Suggestion Request",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.createSuggestionRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/trustmeshes": {
             "get": {
                 "security": [
@@ -86,6 +194,73 @@ var doc = `{
         }
     },
     "definitions": {
+        "handler.createSuggestionRequest": {
+            "type": "object",
+            "properties": {
+                "baseledger_business_object_id": {
+                    "type": "string"
+                },
+                "business_object_json": {
+                    "type": "string"
+                },
+                "business_object_type": {
+                    "type": "string"
+                },
+                "knowledge_limiters": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "recipient": {
+                    "type": "string"
+                },
+                "referenced_baseledger_business_object_id": {
+                    "type": "string"
+                },
+                "referenced_baseledger_transaction_id": {
+                    "type": "string"
+                },
+                "sor_message_id": {
+                    "type": "string"
+                },
+                "workgroup_id": {
+                    "type": "string"
+                },
+                "workstep_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.createSynchronizationFeedbackRequest": {
+            "type": "object",
+            "properties": {
+                "approved": {
+                    "type": "boolean"
+                },
+                "baseledger_business_object_id_of_approved_object": {
+                    "type": "string"
+                },
+                "business_object_type": {
+                    "type": "string"
+                },
+                "feedback_message": {
+                    "type": "string"
+                },
+                "original_baseledger_transaction_id": {
+                    "type": "string"
+                },
+                "original_offchain_process_message_id": {
+                    "type": "string"
+                },
+                "recipient": {
+                    "type": "string"
+                },
+                "workgroup_id": {
+                    "type": "string"
+                }
+            }
+        },
         "handler.trustmeshDto": {
             "type": "object",
             "properties": {
