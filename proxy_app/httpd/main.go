@@ -42,7 +42,6 @@ func main() {
 	r.POST("/suggestion", basicAuth, handler.CreateSuggestionRequestHandler())
 	r.POST("/feedback", basicAuth, handler.CreateSynchronizationFeedbackHandler())
 	r.GET("/sunburst/:txId", basicAuth, handler.GetSunburstHandler())
-	r.POST("send_offchain_message", basicAuth, handler.SendOffchainMessageHandler())
 	r.GET("/organization", basicAuth, handler.GetOrganizationsHandler())
 	r.POST("/organization", basicAuth, handler.CreateOrganizationHandler())
 	r.DELETE("/organization/:id", basicAuth, handler.DeleteOrganizationHandler())
