@@ -79,6 +79,15 @@ func GetTrustmeshesHandler() gin.HandlerFunc {
 	}
 }
 
+// @Security BasicAuth
+// GetTrustmesh ... Get single trustmesh
+// @Summary Get single trustmesh
+// @Description get single trustmesh
+// @Param id path string format "uuid" "id"
+// @Tags Trustmesh
+// @Produce json
+// @Success 200 {object} trustmeshDto
+// @Router /trustmeshes/{id} [get]
 func GetTrustmeshHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		trustmeshIdParam := c.Param("id")

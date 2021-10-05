@@ -50,6 +50,39 @@ var doc = `{
                     }
                 }
             }
+        },
+        "/trustmeshes/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "get single trustmesh",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Trustmesh"
+                ],
+                "summary": "Get single trustmesh",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid",
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.trustmeshDto"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {

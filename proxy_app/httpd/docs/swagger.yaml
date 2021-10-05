@@ -92,6 +92,26 @@ paths:
       summary: Get all trustmeshes
       tags:
       - Trustmeshes
+  /trustmeshes/{id}:
+    get:
+      description: get single trustmesh
+      parameters:
+      - description: uuid
+        in: path
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.trustmeshDto'
+      security:
+      - BasicAuth: []
+      summary: Get single trustmesh
+      tags:
+      - Trustmesh
 securityDefinitions:
   BasicAuth:
     type: basic
