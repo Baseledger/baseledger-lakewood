@@ -22,6 +22,16 @@ type sunburstItem struct {
 	Children []sunburstItem `json:"children"`
 }
 
+// @Security BasicAuth
+// Getsunburst ... Get data for sunburst chart
+// @Summary Get data for sunburst chart
+// @Description get data for sunburst chart
+// @Param txId path string format "uuid" "txId"
+// @Tags Sunbursts
+// @Produce json
+// @Success 200 {object} syncTreeSunburst
+// @Failure 400 {string} errorMessage
+// @Router /sunburst/{txId} [get]
 func GetSunburstHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		txId := c.Param("txId")
@@ -29,7 +39,7 @@ func GetSunburstHandler() gin.HandlerFunc {
 		offchainMessage, err := types.GetOffchainMsgForSunburst(txId)
 
 		if err != nil {
-			restutil.RenderError(err.Error(), 422, c)
+			restutil.RenderError(err.Error(), 400, c)
 			return
 		}
 

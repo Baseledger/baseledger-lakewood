@@ -87,6 +87,7 @@ func GetTrustmeshesHandler() gin.HandlerFunc {
 // @Tags Trustmesh
 // @Produce json
 // @Success 200 {object} trustmeshDto
+// @Failure 400,404 {string} errorMessage
 // @Router /trustmeshes/{id} [get]
 func GetTrustmeshHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {

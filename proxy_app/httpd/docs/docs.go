@@ -131,6 +131,45 @@ var doc = `{
                 }
             }
         },
+        "/sunburst/{txId}": {
+            "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "get data for sunburst chart",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Sunbursts"
+                ],
+                "summary": "Get data for sunburst chart",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid",
+                        "name": "txId",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.syncTreeSunburst"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/trustmeshes": {
             "get": {
                 "security": [
@@ -187,6 +226,18 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/handler.trustmeshDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 }
@@ -258,6 +309,37 @@ var doc = `{
                 },
                 "workgroup_id": {
                     "type": "string"
+                }
+            }
+        },
+        "handler.sunburstItem": {
+            "type": "object",
+            "properties": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/handler.sunburstItem"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "integer"
+                }
+            }
+        },
+        "handler.syncTreeSunburst": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/handler.sunburstItem"
+                    }
+                },
+                "levels": {
+                    "type": "number"
                 }
             }
         },

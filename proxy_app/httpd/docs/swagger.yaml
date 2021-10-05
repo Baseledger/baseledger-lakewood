@@ -43,6 +43,26 @@ definitions:
       workgroup_id:
         type: string
     type: object
+  handler.sunburstItem:
+    properties:
+      children:
+        items:
+          $ref: '#/definitions/handler.sunburstItem'
+        type: array
+      name:
+        type: string
+      value:
+        type: integer
+    type: object
+  handler.syncTreeSunburst:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/handler.sunburstItem'
+        type: array
+      levels:
+        type: number
+    type: object
   handler.trustmeshDto:
     properties:
       businessObjectTypes:
@@ -187,6 +207,30 @@ paths:
       summary: Create new suggestion based on parameters
       tags:
       - Suggestions
+  /sunburst/{txId}:
+    get:
+      description: get data for sunburst chart
+      parameters:
+      - description: uuid
+        in: path
+        name: txId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.syncTreeSunburst'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Get data for sunburst chart
+      tags:
+      - Sunbursts
   /trustmeshes:
     get:
       description: get all trustmeshes
@@ -219,6 +263,14 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handler.trustmeshDto'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
       security:
       - BasicAuth: []
       summary: Get single trustmesh
