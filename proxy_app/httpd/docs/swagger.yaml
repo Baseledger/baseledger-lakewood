@@ -1,4 +1,9 @@
 definitions:
+  handler.createOrgRequest:
+    properties:
+      name:
+        type: string
+    type: object
   handler.createSuggestionRequest:
     properties:
       baseledger_business_object_id:
@@ -41,6 +46,13 @@ definitions:
       recipient:
         type: string
       workgroup_id:
+        type: string
+    type: object
+  handler.orgDetailsDto:
+    properties:
+      id:
+        type: string
+      name:
         type: string
     type: object
   handler.sunburstItem:
@@ -173,6 +185,82 @@ paths:
       summary: Create new feedback based on parameters
       tags:
       - Feedbacks
+  /organization:
+    get:
+      description: get all organizations
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handler.orgDetailsDto'
+            type: array
+      security:
+      - BasicAuth: []
+      summary: Get all organizations
+      tags:
+      - Organizations
+    post:
+      consumes:
+      - application/json
+      description: Create new organization
+      parameters:
+      - description: Organization Request
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handler.createOrgRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Create new organization based on parameters
+      tags:
+      - Organizations
+  /organization/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete organization
+      parameters:
+      - description: uuid
+        in: path
+        name: id
+        type: string
+      responses:
+        "204":
+          description: ""
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Delete organization
+      tags:
+      - Organizations
   /suggestion:
     post:
       consumes:

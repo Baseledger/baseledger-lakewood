@@ -24,6 +24,14 @@ type deleteOrgRequest struct {
 	Id string `json:"organization_id"`
 }
 
+// @Security BasicAuth
+// GetOrganizations ... Get all organizations
+// @Summary Get all organizations
+// @Description get all organizations
+// @Tags Organizations
+// @Produce json
+// @Success 200 {array} orgDetailsDto
+// @Router /organization [get]
 func GetOrganizationsHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var organizations []types.Organization
@@ -42,6 +50,16 @@ func GetOrganizationsHandler() gin.HandlerFunc {
 	}
 }
 
+// @Security BasicAuth
+// Create Organization ... Create Organization
+// @Summary Create new organization based on parameters
+// @Description Create new organization
+// @Tags Organizations
+// @Accept json
+// @Param user body createOrgRequest true "Organization Request"
+// @Success 200 {string} types.Organization
+// @Failure 400,422,500 {string} errorMessage
+// @Router /organization [post]
 func CreateOrganizationHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		buf, err := c.GetRawData()
@@ -69,6 +87,16 @@ func CreateOrganizationHandler() gin.HandlerFunc {
 	}
 }
 
+// @Security BasicAuth
+// Delete Organization ... Delete Organization
+// @Summary Delete organization
+// @Description Delete organization
+// @Tags Organizations
+// @Accept json
+// @Param id path string format "uuid" "id"
+// @Success 204
+// @Failure 404,500 {string} errorMessage
+// @Router /organization/{id} [delete]
 func DeleteOrganizationHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		orgId := c.Param("id")
@@ -88,7 +116,7 @@ func DeleteOrganizationHandler() gin.HandlerFunc {
 			return
 		}
 
-		restutil.Render(nil, 200, c)
+		restutil.Render(nil, 204, c)
 	}
 }
 
