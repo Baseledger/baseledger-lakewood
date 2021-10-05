@@ -49,6 +49,14 @@ type trustmeshDto struct {
 	Entries             []trustmeshEntryDto
 }
 
+// @Security BasicAuth
+// GetTrustmeshes ... Get all trustmeshes
+// @Summary Get all trustmeshes
+// @Description get all trustmeshes
+// @Tags Trustmeshes
+// @Produce json
+// @Success 200 {array} trustmeshDto
+// @Router /trustmeshes [get]
 func GetTrustmeshesHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var trustmeshes []types.Trustmesh

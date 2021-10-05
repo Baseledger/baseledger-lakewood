@@ -17,8 +17,16 @@ import (
 	"github.com/unibrightio/proxy-api/logger"
 	"github.com/unibrightio/proxy-api/messaging"
 	"github.com/unibrightio/proxy-api/types"
+
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
+	_ "github.com/unibrightio/proxy-api/httpd/docs"
 )
 
+// @title Baseledger Proxy API documentation
+// @version 1.0.0
+// @host localhost:8081
+// @securityDefinitions.basic BasicAuth
 func main() {
 	setupViper()
 	logger.SetupLogger()
@@ -28,6 +36,7 @@ func main() {
 
 	r := gin.Default()
 	r.Use(helpers.CORSMiddleware())
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	r.GET("/trustmeshes", basicAuth, handler.GetTrustmeshesHandler())
 	r.GET("/trustmeshes/:id", basicAuth, handler.GetTrustmeshHandler())
 	r.POST("/suggestion", basicAuth, handler.CreateInitialSuggestionRequestHandler())

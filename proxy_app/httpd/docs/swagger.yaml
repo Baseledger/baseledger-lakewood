@@ -1,0 +1,98 @@
+definitions:
+  handler.trustmeshDto:
+    properties:
+      businessObjectTypes:
+        type: string
+      containsRejections:
+        type: boolean
+      createdAt:
+        type: string
+      endTime:
+        type: string
+      entries:
+        items:
+          $ref: '#/definitions/handler.trustmeshEntryDto'
+        type: array
+      finalized:
+        type: boolean
+      id:
+        type: string
+      participants:
+        type: string
+      startTime:
+        type: string
+    type: object
+  handler.trustmeshEntryDto:
+    properties:
+      baseledgerBusinessObjectId:
+        type: string
+      baseledgerTransactionId:
+        type: string
+      baseledgerTransactionType:
+        type: string
+      businessObjectType:
+        type: string
+      commitmentState:
+        type: string
+      entryType:
+        type: string
+      offchainProcessMessageId:
+        type: string
+      receiverOrgId:
+        type: string
+      receiverOrgName:
+        type: string
+      referencedBaseledgerBusinessObjectId:
+        type: string
+      referencedBaseledgerTransactionId:
+        type: string
+      referencedProcessMessageId:
+        type: string
+      senderOrgId:
+        type: string
+      senderOrgName:
+        type: string
+      tendermintBlockId:
+        type: string
+      tendermintTransactionId:
+        type: string
+      tendermintTransactionTimestamp:
+        type: string
+      transactionHash:
+        type: string
+      trustmeshId:
+        type: string
+      workgroupId:
+        type: string
+      workgroupName:
+        type: string
+      workstepType:
+        type: string
+    type: object
+host: localhost:8081
+info:
+  contact: {}
+  title: Baseledger Proxy API documentation
+  version: 1.0.0
+paths:
+  /trustmeshes:
+    get:
+      description: get all trustmeshes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handler.trustmeshDto'
+            type: array
+      security:
+      - BasicAuth: []
+      summary: Get all trustmeshes
+      tags:
+      - Trustmeshes
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"
