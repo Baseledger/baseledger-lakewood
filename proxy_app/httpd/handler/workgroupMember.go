@@ -30,10 +30,16 @@ type createWorkgroupMemberRequest struct {
 	OrganizationToken    string `json:"organization_token"`
 }
 
-type deleteWorkgroupMemberRequest struct {
-	Id string `json:"workgroup_member_id"`
-}
-
+// @Security BasicAuth
+// GetWorkgroupMember ... Get workgroup members
+// @Summary Get workgroup members
+// @Description get workgroup members
+// @Tags Workgroup Members
+// @Produce json
+// @Accept json
+// @Param user body getWorkgroupMemberRequest true "Workgroup Members Request"
+// @Success 200 {array} workgroupMemberDetailsDto
+// @Router /participation [get]
 func GetWorkgroupMemberHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		buf, err := c.GetRawData()
@@ -69,6 +75,16 @@ func GetWorkgroupMemberHandler() gin.HandlerFunc {
 	}
 }
 
+// @Security BasicAuth
+// Create Workgroup Member ... Create Workgroup Member
+// @Summary Create new workgroup member based on parameters
+// @Description Create new workgroup member
+// @Tags Workgroup Members
+// @Accept json
+// @Param user body createWorkgroupMemberRequest true "Workgroup Member Request"
+// @Success 200 {string} types.WorkgroupMember
+// @Failure 400,422,500 {string} errorMessage
+// @Router /participation [post]
 func CreateWorkgroupMemberHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		buf, err := c.GetRawData()
@@ -96,6 +112,15 @@ func CreateWorkgroupMemberHandler() gin.HandlerFunc {
 	}
 }
 
+// @Security BasicAuth
+// Delete Workgroup Member... Delete Workgroup Member
+// @Summary Delete workgroup member
+// @Description Delete workgroup member
+// @Tags Workgroup Members
+// @Param id path string format "uuid" "id"
+// @Success 204
+// @Failure 404,500 {string} errorMessage
+// @Router /participation/{id} [delete]
 func DeleteWorkgroupMemberHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		membershipId := c.Param("id")
@@ -115,7 +140,7 @@ func DeleteWorkgroupMemberHandler() gin.HandlerFunc {
 			return
 		}
 
-		restutil.Render(nil, 200, c)
+		restutil.Render(nil, 204, c)
 	}
 }
 

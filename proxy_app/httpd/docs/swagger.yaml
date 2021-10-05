@@ -48,6 +48,29 @@ definitions:
       workgroup_id:
         type: string
     type: object
+  handler.createWorkgroupMemberRequest:
+    properties:
+      organization_endpoint:
+        type: string
+      organization_id:
+        type: string
+      organization_token:
+        type: string
+      workgroup_id:
+        type: string
+    type: object
+  handler.createWorkgroupRequest:
+    properties:
+      name:
+        type: string
+      privatize_key:
+        type: string
+    type: object
+  handler.getWorkgroupMemberRequest:
+    properties:
+      workgroup_id:
+        type: string
+    type: object
   handler.orgDetailsDto:
     properties:
       id:
@@ -145,6 +168,28 @@ definitions:
       workstepType:
         type: string
     type: object
+  handler.workgroupDetailsDto:
+    properties:
+      id:
+        type: string
+      key:
+        type: string
+      name:
+        type: string
+    type: object
+  handler.workgroupMemberDetailsDto:
+    properties:
+      id:
+        type: string
+      organization_endpoint:
+        type: string
+      organization_id:
+        type: string
+      organization_token:
+        type: string
+      workgroup_id:
+        type: string
+    type: object
 host: localhost:8081
 info:
   contact: {}
@@ -237,8 +282,6 @@ paths:
       - Organizations
   /organization/{id}:
     delete:
-      consumes:
-      - application/json
       description: Delete organization
       parameters:
       - description: uuid
@@ -261,6 +304,89 @@ paths:
       summary: Delete organization
       tags:
       - Organizations
+  /participation:
+    get:
+      consumes:
+      - application/json
+      description: get workgroup members
+      parameters:
+      - description: Workgroup Members Request
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handler.getWorkgroupMemberRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handler.workgroupMemberDetailsDto'
+            type: array
+      security:
+      - BasicAuth: []
+      summary: Get workgroup members
+      tags:
+      - Workgroup Members
+    post:
+      consumes:
+      - application/json
+      description: Create new workgroup member
+      parameters:
+      - description: Workgroup Member Request
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handler.createWorkgroupMemberRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Create new workgroup member based on parameters
+      tags:
+      - Workgroup Members
+  /participation/{id}:
+    delete:
+      description: Delete workgroup member
+      parameters:
+      - description: uuid
+        in: path
+        name: id
+        type: string
+      responses:
+        "204":
+          description: ""
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Delete workgroup member
+      tags:
+      - Workgroup Members
   /suggestion:
     post:
       consumes:
@@ -364,6 +490,80 @@ paths:
       summary: Get single trustmesh
       tags:
       - Trustmesh
+  /workgroup:
+    get:
+      description: get all workgroups
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handler.workgroupDetailsDto'
+            type: array
+      security:
+      - BasicAuth: []
+      summary: Get all workgroups
+      tags:
+      - Workgroups
+    post:
+      consumes:
+      - application/json
+      description: Create new workgroup
+      parameters:
+      - description: Workgroup Request
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handler.createWorkgroupRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Create new workgroup based on parameters
+      tags:
+      - Workgroups
+  /workgroup/{id}:
+    delete:
+      description: Delete workgroup
+      parameters:
+      - description: uuid
+        in: path
+        name: id
+        type: string
+      responses:
+        "204":
+          description: ""
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Delete workgroup
+      tags:
+      - Workgroups
 securityDefinitions:
   BasicAuth:
     type: basic

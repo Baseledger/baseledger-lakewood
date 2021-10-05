@@ -20,10 +20,6 @@ type createOrgRequest struct {
 	Name string `json:"name"`
 }
 
-type deleteOrgRequest struct {
-	Id string `json:"organization_id"`
-}
-
 // @Security BasicAuth
 // GetOrganizations ... Get all organizations
 // @Summary Get all organizations
@@ -92,7 +88,6 @@ func CreateOrganizationHandler() gin.HandlerFunc {
 // @Summary Delete organization
 // @Description Delete organization
 // @Tags Organizations
-// @Accept json
 // @Param id path string format "uuid" "id"
 // @Success 204
 // @Failure 404,500 {string} errorMessage

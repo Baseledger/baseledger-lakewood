@@ -165,13 +165,143 @@ var doc = `{
                     }
                 ],
                 "description": "Delete organization",
-                "consumes": [
-                    "application/json"
-                ],
                 "tags": [
                     "Organizations"
                 ],
                 "summary": "Delete organization",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid",
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/participation": {
+            "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "get workgroup members",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Workgroup Members"
+                ],
+                "summary": "Get workgroup members",
+                "parameters": [
+                    {
+                        "description": "Workgroup Members Request",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.getWorkgroupMemberRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/handler.workgroupMemberDetailsDto"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "Create new workgroup member",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Workgroup Members"
+                ],
+                "summary": "Create new workgroup member based on parameters",
+                "parameters": [
+                    {
+                        "description": "Workgroup Member Request",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.createWorkgroupMemberRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/participation/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "Delete workgroup member",
+                "tags": [
+                    "Workgroup Members"
+                ],
+                "summary": "Delete workgroup member",
                 "parameters": [
                     {
                         "type": "string",
@@ -364,6 +494,125 @@ var doc = `{
                     }
                 }
             }
+        },
+        "/workgroup": {
+            "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "get all workgroups",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Workgroups"
+                ],
+                "summary": "Get all workgroups",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/handler.workgroupDetailsDto"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "Create new workgroup",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Workgroups"
+                ],
+                "summary": "Create new workgroup based on parameters",
+                "parameters": [
+                    {
+                        "description": "Workgroup Request",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.createWorkgroupRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/workgroup/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "Delete workgroup",
+                "tags": [
+                    "Workgroups"
+                ],
+                "summary": "Delete workgroup",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid",
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -437,6 +686,42 @@ var doc = `{
                 "recipient": {
                     "type": "string"
                 },
+                "workgroup_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.createWorkgroupMemberRequest": {
+            "type": "object",
+            "properties": {
+                "organization_endpoint": {
+                    "type": "string"
+                },
+                "organization_id": {
+                    "type": "string"
+                },
+                "organization_token": {
+                    "type": "string"
+                },
+                "workgroup_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.createWorkgroupRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "privatize_key": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.getWorkgroupMemberRequest": {
+            "type": "object",
+            "properties": {
                 "workgroup_id": {
                     "type": "string"
                 }
@@ -586,6 +871,40 @@ var doc = `{
                     "type": "string"
                 },
                 "workstepType": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.workgroupDetailsDto": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.workgroupMemberDetailsDto": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "organization_endpoint": {
+                    "type": "string"
+                },
+                "organization_id": {
+                    "type": "string"
+                },
+                "organization_token": {
+                    "type": "string"
+                },
+                "workgroup_id": {
                     "type": "string"
                 }
             }

@@ -22,10 +22,14 @@ type createWorkgroupRequest struct {
 	PrivatizeKey string `json:"privatize_key"`
 }
 
-type deleteWorkgroupRequest struct {
-	Id string `json:"workgroup_id"`
-}
-
+// @Security BasicAuth
+// GetWorkgroups ... Get all workgroups
+// @Summary Get all workgroups
+// @Description get all workgroups
+// @Tags Workgroups
+// @Produce json
+// @Success 200 {array} workgroupDetailsDto
+// @Router /workgroup [get]
 func GetWorkgroupsHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var workgroups []types.Workgroup
@@ -45,6 +49,16 @@ func GetWorkgroupsHandler() gin.HandlerFunc {
 	}
 }
 
+// @Security BasicAuth
+// Create Workgroup ... Create Workgroup
+// @Summary Create new workgroup based on parameters
+// @Description Create new workgroup
+// @Tags Workgroups
+// @Accept json
+// @Param user body createWorkgroupRequest true "Workgroup Request"
+// @Success 200 {string} types.Workgroup
+// @Failure 400,422,500 {string} errorMessage
+// @Router /workgroup [post]
 func CreateWorkgroupHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		buf, err := c.GetRawData()
@@ -72,6 +86,15 @@ func CreateWorkgroupHandler() gin.HandlerFunc {
 	}
 }
 
+// @Security BasicAuth
+// Delete Workgroup ... Delete Workgroup
+// @Summary Delete workgroup
+// @Description Delete workgroup
+// @Tags Workgroups
+// @Param id path string format "uuid" "id"
+// @Success 204
+// @Failure 404,500 {string} errorMessage
+// @Router /workgroup/{id} [delete]
 func DeleteWorkgroupHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		workgroupId := c.Param("id")
@@ -91,7 +114,7 @@ func DeleteWorkgroupHandler() gin.HandlerFunc {
 			return
 		}
 
-		restutil.Render(nil, 200, c)
+		restutil.Render(nil, 204, c)
 	}
 }
 
