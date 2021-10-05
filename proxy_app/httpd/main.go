@@ -48,9 +48,9 @@ func main() {
 	r.GET("/workgroup", basicAuth, handler.GetWorkgroupsHandler())
 	r.POST("/workgroup", basicAuth, handler.CreateWorkgroupHandler())
 	r.DELETE("/workgroup/:id", basicAuth, handler.DeleteWorkgroupHandler())
-	r.GET("/participation", basicAuth, handler.GetWorkgroupMemberHandler())
-	r.POST("/participation", basicAuth, handler.CreateWorkgroupMemberHandler())
-	r.DELETE("/participation/:id", basicAuth, handler.DeleteWorkgroupMemberHandler())
+	r.GET("/workgroup/:id/participation", basicAuth, handler.GetWorkgroupMembersHandler())
+	r.POST("/workgroup/:id/participation", basicAuth, handler.CreateWorkgroupMemberHandler())
+	r.DELETE("/workgroup/:id/participation/:participationId", basicAuth, handler.DeleteWorkgroupMemberHandler())
 	// TODO: BAS-29 r.POST("/workgroup/invite", handler.InviteToWorkgroupHandler())
 	// full details of workgroup, including organization
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")

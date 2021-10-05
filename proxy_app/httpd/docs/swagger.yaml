@@ -56,19 +56,12 @@ definitions:
         type: string
       organization_token:
         type: string
-      workgroup_id:
-        type: string
     type: object
   handler.createWorkgroupRequest:
     properties:
       name:
         type: string
       privatize_key:
-        type: string
-    type: object
-  handler.getWorkgroupMemberRequest:
-    properties:
-      workgroup_id:
         type: string
     type: object
   handler.orgDetailsDto:
@@ -304,89 +297,6 @@ paths:
       summary: Delete organization
       tags:
       - Organizations
-  /participation:
-    get:
-      consumes:
-      - application/json
-      description: get workgroup members
-      parameters:
-      - description: Workgroup Members Request
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/handler.getWorkgroupMemberRequest'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/handler.workgroupMemberDetailsDto'
-            type: array
-      security:
-      - BasicAuth: []
-      summary: Get workgroup members
-      tags:
-      - Workgroup Members
-    post:
-      consumes:
-      - application/json
-      description: Create new workgroup member
-      parameters:
-      - description: Workgroup Member Request
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/handler.createWorkgroupMemberRequest'
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-        "400":
-          description: Bad Request
-          schema:
-            type: string
-        "422":
-          description: Unprocessable Entity
-          schema:
-            type: string
-        "500":
-          description: Internal Server Error
-          schema:
-            type: string
-      security:
-      - BasicAuth: []
-      summary: Create new workgroup member based on parameters
-      tags:
-      - Workgroup Members
-  /participation/{id}:
-    delete:
-      description: Delete workgroup member
-      parameters:
-      - description: uuid
-        in: path
-        name: id
-        type: string
-      responses:
-        "204":
-          description: ""
-        "404":
-          description: Not Found
-          schema:
-            type: string
-        "500":
-          description: Internal Server Error
-          schema:
-            type: string
-      security:
-      - BasicAuth: []
-      summary: Delete workgroup member
-      tags:
-      - Workgroup Members
   /suggestion:
     post:
       consumes:
@@ -564,6 +474,95 @@ paths:
       summary: Delete workgroup
       tags:
       - Workgroups
+  /workgroup/{id}/participation:
+    get:
+      consumes:
+      - application/json
+      description: get workgroup members
+      parameters:
+      - description: uuid
+        in: path
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handler.workgroupMemberDetailsDto'
+            type: array
+      security:
+      - BasicAuth: []
+      summary: Get workgroup members
+      tags:
+      - Workgroup Members
+    post:
+      consumes:
+      - application/json
+      description: Create new workgroup member
+      parameters:
+      - description: uuid
+        in: path
+        name: id
+        type: string
+      - description: Workgroup Member Request
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handler.createWorkgroupMemberRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Create new workgroup member based on parameters
+      tags:
+      - Workgroup Members
+  /workgroup/{id}/participation/{participationId}:
+    delete:
+      description: Delete workgroup member
+      parameters:
+      - description: uuid
+        in: path
+        name: id
+        type: string
+      - description: uuid
+        in: path
+        name: participationId
+        type: string
+      responses:
+        "204":
+          description: ""
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Delete workgroup member
+      tags:
+      - Workgroup Members
 securityDefinitions:
   BasicAuth:
     type: basic

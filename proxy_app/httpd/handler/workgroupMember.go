@@ -19,12 +19,7 @@ type workgroupMemberDetailsDto struct {
 	OrganizationToken    string    `json:"organization_token"`
 }
 
-type getWorkgroupMemberRequest struct {
-	WorkgroupId string `json:"workgroup_id"`
-}
-
 type createWorkgroupMemberRequest struct {
-	WorkgroupId          string `json:"workgroup_id"`
 	OrganizationId       string `json:"organization_id"`
 	OrganizationEndpoint string `json:"organization_endpoint"`
 	OrganizationToken    string `json:"organization_token"`
@@ -37,27 +32,15 @@ type createWorkgroupMemberRequest struct {
 // @Tags Workgroup Members
 // @Produce json
 // @Accept json
-// @Param user body getWorkgroupMemberRequest true "Workgroup Members Request"
+// @Param id path string format "uuid" "id"
 // @Success 200 {array} workgroupMemberDetailsDto
-// @Router /participation [get]
-func GetWorkgroupMemberHandler() gin.HandlerFunc {
+// @Router /workgroup/{id}/participation [get]
+func GetWorkgroupMembersHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		buf, err := c.GetRawData()
-		if err != nil {
-			restutil.RenderError(err.Error(), 400, c)
-			return
-		}
-
-		req := &getWorkgroupMemberRequest{}
-		err = json.Unmarshal(buf, &req)
-		if err != nil {
-			restutil.RenderError(err.Error(), 422, c)
-			return
-		}
-
+		workgroupId := c.Param("id")
 		var workgroupMembers []types.WorkgroupMember
 
-		dbutil.Db.GetConn().Where("workgroup_id=?", req.WorkgroupId).Find(&workgroupMembers)
+		dbutil.Db.GetConn().Where("workgroup_id=?", workgroupId).Find(&workgroupMembers)
 
 		var workgroupMembersDtos []workgroupMemberDetailsDto
 
@@ -81,12 +64,14 @@ func GetWorkgroupMemberHandler() gin.HandlerFunc {
 // @Description Create new workgroup member
 // @Tags Workgroup Members
 // @Accept json
+// @Param id path string format "uuid" "id"
 // @Param user body createWorkgroupMemberRequest true "Workgroup Member Request"
 // @Success 200 {string} types.WorkgroupMember
 // @Failure 400,422,500 {string} errorMessage
-// @Router /participation [post]
+// @Router /workgroup/{id}/participation [post]
 func CreateWorkgroupMemberHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		workgroupId := c.Param("id")
 		buf, err := c.GetRawData()
 		if err != nil {
 			restutil.RenderError(err.Error(), 400, c)
@@ -100,7 +85,7 @@ func CreateWorkgroupMemberHandler() gin.HandlerFunc {
 			return
 		}
 
-		newWorkgroupMember := newWorkgroupMember(*req)
+		newWorkgroupMember := newWorkgroupMember(*req, workgroupId)
 
 		if !newWorkgroupMember.Create() {
 			logger.Errorf("error when creating new workgroup member")
@@ -118,15 +103,17 @@ func CreateWorkgroupMemberHandler() gin.HandlerFunc {
 // @Description Delete workgroup member
 // @Tags Workgroup Members
 // @Param id path string format "uuid" "id"
+// @Param participationId path string format "uuid" "id"
 // @Success 204
 // @Failure 404,500 {string} errorMessage
-// @Router /participation/{id} [delete]
+// @Router /workgroup/{id}/participation/{participationId} [delete]
 func DeleteWorkgroupMemberHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		membershipId := c.Param("id")
+		workgroupdId := c.Param("id")
+		membershipId := c.Param("participationId")
 
 		var existingWorkgroupMember types.WorkgroupMember
-		dbError := dbutil.Db.GetConn().First(&existingWorkgroupMember, "id = ?", membershipId).Error
+		dbError := dbutil.Db.GetConn().First(&existingWorkgroupMember, "workgroup_id = ? and id = ?", workgroupdId, membershipId).Error
 
 		if dbError != nil {
 			logger.Errorf("error trying to fetch workgroup member with id %s\n", membershipId)
@@ -144,9 +131,9 @@ func DeleteWorkgroupMemberHandler() gin.HandlerFunc {
 	}
 }
 
-func newWorkgroupMember(req createWorkgroupMemberRequest) *types.WorkgroupMember {
+func newWorkgroupMember(req createWorkgroupMemberRequest, workgroupId string) *types.WorkgroupMember {
 	return &types.WorkgroupMember{
-		WorkgroupId:          req.WorkgroupId,
+		WorkgroupId:          workgroupId,
 		OrganizationId:       req.OrganizationId,
 		OrganizationEndpoint: req.OrganizationEndpoint,
 		OrganizationToken:    req.OrganizationToken,
