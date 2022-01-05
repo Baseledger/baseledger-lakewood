@@ -21,33 +21,52 @@ export default class Transaction extends Component{
     }
 
     render(){
-        
-        
-        if (this.props.loading){
+
+
+        if (this.props.loading) {
             return <Container id="transaction">
                 <Spinner type="grow" color="primary" />
             </Container>
         }
         else{
-            if (this.props.transactionExist){
+            if (this.props.transactionExist) {
                 let tx = this.props.transaction;
+
                 return <Container id="transaction">
                     <Helmet>
                         <title>Transaction {tx.txhash} on {Meteor.settings.public.chainName} | Baseledger</title>
                         <meta name="description" content={"Details of transaction "+tx.txhash} />
                     </Helmet>
-                    <h4><T>transactions.transaction</T> {(!tx.tx_response.code)?<TxIcon valid />:<TxIcon />}</h4>
-                    {(tx.tx_response.code)?<Row><Col xs={{size:12, order:"last"}} className="error">
-                        <Alert color="danger">
-                            <CosmosErrors
-                                code={tx.tx_response.code}
-                                codespace={tx.codespace}
-                                log={tx.raw_log}
-                            />
-                        </Alert>
-                    </Col></Row>:''}
+
+                    <h4>
+                        <T>transactions.transaction</T>
+
+                        {(!tx.tx_response.code)
+                            ? <TxIcon valid />
+                            : <TxIcon />
+                        }
+                    </h4>
+
+                    {(tx.tx_response.code)
+                        ?
+                        <Row>
+                            <Col xs={{size:12, order:"last"}} className="error">
+                                <Alert color="danger">
+                                    <CosmosErrors
+                                        code={tx.tx_response.code}
+                                        codespace={tx.codespace}
+                                        log={tx.raw_log}
+                                    />
+                                </Alert>
+                            </Col>
+                        </Row>
+                        :
+                        ''
+                    }
+
                     <Card>
                         <div className="card-header"><T>common.information</T></div>
+
                         <CardBody>
                             <Row>
                                 <Col md={4} className="label"><T>common.hash</T></Col>
@@ -55,26 +74,53 @@ export default class Transaction extends Component{
                                 <Col md={4} className="label"><T>common.height</T></Col>
                                 <Col md={8} className="value">
                                     <Link to={"/blocks/"+tx.height}>{numbro(tx.height).format("0,0")}</Link>
-                                    {tx.block()?<span> <TimeStamp time={tx.block().time}/></span>:null}
+
+                                    {tx.block()
+                                        ? <span><TimeStamp time={tx.block().time}/></span>
+                                        : null
+                                    }
                                 </Col>
                                 <Col md={4} className="label"><T>transactions.fee</T></Col>
-                                <Col md={8} className="value">{(tx.tx.auth_info.fee.amount.length > 0)?tx.tx.auth_info.fee.amount.map((fee,i) => {
-                                    return <span className="text-nowrap" key={i}> {(new Coin(parseFloat(fee.amount), fee.denom)).toString(6)} </span>
-                                }):<span><T>1token</T></span>}</Col>
+                                <Col md={8} className="value">
+                                    {(tx.tx.auth_info.fee.amount.length > 0)
+                                        ? tx.tx.auth_info.fee.amount.map((fee,i) => {
+                                            return <span className="text-nowrap" key={i}>
+                                                {(new Coin(parseFloat(fee.amount), fee.denom)).toString(6)}
+                                            </span>
+                                        })
+                                        : <span><T>1token</T></span>
+                                    }
+                                </Col>
                                 <Col md={4} className="label"><T>transactions.gasUsedWanted</T></Col>
-                                <Col md={8} className="value">{numbro(tx.tx_response.gas_used).format("0,0")} / {numbro(tx.tx_response.gas_wanted).format("0,0")}</Col>
+                                <Col md={8} className="value">
+                                    {numbro(tx.tx_response.gas_used).format("0,0")} / {numbro(tx.tx_response.gas_wanted).format("0,0")}
+                                </Col>
                                 <Col md={4} className="label"><T>transactions.memo</T></Col>
                                 <Col md={8} className="value"><Markdown markup={ tx.tx.body.memo } /></Col>
-                              
                             </Row>
                         </CardBody>
                     </Card>
                     <Card>
                         <div className="card-header"><T>transactions.activities</T></div>
                     </Card>
-                    {(tx.tx.body.messages && tx.tx.body.messages.length >0)?tx.tx.body.messages.map((msg,i) => {
-                        return <Card body key={i}><Activities msg={msg} invalid={(!!tx.tx_response.code)} events={(tx.tx_response.logs&&tx.tx_response.logs[i])?tx.tx_response.logs[i].events:null} denom={this.denom}/></Card>
-                    }):''}
+
+                    {(tx.tx.body.messages && tx.tx.body.messages.length > 0)
+                        ? tx.tx.body.messages.map((msg,i) => {
+                            return <Card body key={i}>
+                                <Activities
+                                    msg={msg}
+                                    invalid={(!!tx.tx_response.code)}
+                                    events={(tx.tx_response.logs&&tx.tx_response.logs[i])
+                                        ? tx.tx_response.logs[i].events
+                                        : null
+                                    }
+                                    denom={this.denom}
+                                />
+                            </Card>
+                        })
+                        :
+                        ''
+                    }
                 </Container>
             }
             else{

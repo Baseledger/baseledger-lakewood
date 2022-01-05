@@ -1,0 +1,130 @@
+// On /transactions
+div#transactions.container-fluid {
+    padding: 0;
+    margin-right: -15px;
+    margin-left: -15px;
+
+    @media (min-width: 768px) {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
+.transactions-list {
+    padding: 12px 0;
+    width: 100vw;
+    overflow-x: hidden;
+
+    @media (min-width: 768px) {
+        width: calc(100vw - 30px)
+    }
+
+    span {
+        font-weight: bold;
+    }
+
+    &--home {
+        width: calc(100vw - 30px);
+
+        @media (min-width: 768px) {
+            width: calc(50vw - 30px)
+        }
+    }
+
+    .activities {
+        display: flex;
+        margin: 0 auto 12px 12px;
+
+        &__title {
+            margin: auto auto auto 5px;
+        }
+    }
+
+    .wrapper {
+        background-color:rgba(0, 0, 0, 0.05);;
+
+        ul {
+            width: 100vw;
+            list-style-type: none;
+            padding: 12px 6px 0;
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, .4);
+
+            @media (min-width: 768px) {
+                padding: 15px 15px 0;
+                width: 100%;
+            }
+        }
+
+        &--home {
+            ul {
+                width: calc(100vw - 30px);
+
+                @media (min-width: 768px) {
+                    width: calc(50vw - 30px);
+                }
+            }
+        }
+    }
+
+    .transaction {
+        &__info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 12px;
+
+            @media (min-width: 768px) {
+                margin-bottom: 0;
+            }
+        }
+
+        &__item {
+            position: relative;
+            margin-bottom: 12px;
+
+            i {
+                margin-right: 3px;
+            }
+        }
+
+        &__tx-icon, &__fee {
+            position: absolute;
+            right: 0;
+            top: 26px;
+        }
+
+        &__hash {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 110px;
+            display: block;
+
+            @media (min-width: 1300px) {
+                width: 200px;
+            }
+        }
+
+        &__log {
+            background-color: white;
+            padding: 6px 0;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+            margin-bottom: 36px;
+
+            @media (min-width: 768px) {
+                width: calc(100vw - 60px);
+            }
+
+            &--home {
+                @media (min-width: 768px) {
+                    width: calc(50vw - 60px);
+                }
+            }
+
+            &--invalid {
+                background-color: rgba(237, 20, 61, 0.2);
+            }
+        }
+    }
+}
