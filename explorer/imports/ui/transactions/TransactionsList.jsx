@@ -85,41 +85,48 @@ export default class Transactions extends Component {
     }
 
     render() {
-        return !this.props.homepage ? <div id="transactions">
-            <Helmet>
-                <title>Latest Transactions on {Meteor.settings.public.chainName} | Baseledger</title>
-                <meta name="description" content="See what is happening on {Meteor.settings.public.chainName}" />
-            </Helmet>
-            <Row>
-                <Col md={3} xs={12}><h1 className="d-none d-lg-block"><T>transactions.transactions</T></h1></Col>
-                <Col md={9} xs={12} className="text-md-right"><ChainStates /></Col>
-            </Row>
-            <Switch>
-                <Route path="/transactions/:txId" render={(props) => <Sidebar
-                    sidebar={<Transaction {...props} />}
-                    open={this.state.sidebarOpen}
-                    onSetOpen={this.onSetSidebarOpen}
-                    styles={{
-                        sidebar: {
-                            background: "white",
-                            position: "fixed",
-                            width: '85%',
-                            zIndex: 4
-                        }, overlay: {
-                            zIndex: 3
-                        }
-                    }}
-                >
-                </Sidebar>} />
-            </Switch>
-            <Container fluid id="transactions">
-                <List limit={this.state.limit} />
-            </Container>
-            <LoadMore show={this.state.loadmore} />
-        </div> 
-            : <Card className="h-100 overflow-auto">
+        return !this.props.homepage
+            ?
+            <div id="transactions">
+                <Helmet>
+                    <title>Latest Transactions on {Meteor.settings.public.chainName} | Baseledger</title>
+                    <meta name="description" content="See what is happening on {Meteor.settings.public.chainName}" />
+                </Helmet>
+                <Row>
+                    <Col md={3} xs={12}><h1 className="d-none d-lg-block"><T>transactions.transactions</T></h1></Col>
+                    <Col md={9} xs={12} className="text-md-right"><ChainStates /></Col>
+                </Row>
+
+                <Switch>
+                    <Route path="/transactions/:txId" render={(props) => <Sidebar
+                        sidebar={<Transaction {...props} />}
+                        open={this.state.sidebarOpen}
+                        onSetOpen={this.onSetSidebarOpen}
+                        styles={{
+                            sidebar: {
+                                background: "white",
+                                position: "fixed",
+                                width: '85%',
+                                zIndex: 4
+                            }, overlay: {
+                                zIndex: 3
+                            }
+                        }}
+                    >
+                    </Sidebar>} />
+                </Switch>
+
+                <Container fluid id="transactions">
+                    <List limit={this.state.limit} />
+                </Container>
+
+                <LoadMore show={this.state.loadmore} />
+            </div>
+            :
+            <Card className="h-100 overflow-auto">
                 <div className="card-header"><T>transactions.transactions</T></div>
-                <CardBody className="tx-list-homepage">
+
+                <div className="tx-list-homepage">
                     <Table striped className="tx-home">
                         <thead>
                             <tr>
@@ -145,11 +152,10 @@ export default class Transactions extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <List limit={this.state.limit} /></tbody>
-
-
+                            <List limit={this.state.limit} />
+                        </tbody>
                     </Table>
-                </CardBody>
+                </div>
             </Card>;
     }
 }
