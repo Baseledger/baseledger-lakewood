@@ -7,7 +7,7 @@ To explore the current state of baseledger-lakewood, open the [Lakewood Baseledg
 
 ## Join lakewood as replicator node and drop proofs
 
-To join lakewood as a replicator node, perform the steps from docs/drooping_proofs_via_local_node/dropping_proofs_via_local_node.md
+To join lakewood as a replicator node, perform the steps from docs/dropping_proofs_via_local_node/dropping_proofs_via_local_node.md
 
 ## Drop proofs via predeloyed nodes
 
